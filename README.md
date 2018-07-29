@@ -1,6 +1,6 @@
 ## GitHub Projects REST Service
 
-######Author : Nathan Brown
+###### Author : Nathan Brown
 
 ### Overview
 
@@ -12,11 +12,11 @@ Lombok was used to de-boilerplate the ProjectInfo service return object.
 
 **Implementation Note :** The GitHub API results are paged with a maximum of 100 items per page. The service will enumerate up to 10 pages maximum in order to comply with the API rate limiting restrictions of 10 requests per minute, and so returning a maximum of 1000 projects. This means for many languages it is not possible to satisfy the original requirement of returning *all* the projects for a given language.  
 
-###Testing
+### Testing
 
 Unit tests have been implemented for both the service implementation and the GitHub client.
 
-###Usage
+### Usage
 
 In a development environment with Maven installed, the service can be run up from command line using `mvn compile exec:java` in the project directory.
 
@@ -25,8 +25,8 @@ If the service needs to be run standalone, a 'fat' jar containing everything nee
 java -jar github-rest-service-1.0.0-SNAPSHOT-fat.jar
 ```
 
-###API
-#####Request
+### API
+##### Request
 The server is bound to port 8080 and the service supports a single end point of the form: 
 
 `GET /projects/findByLang?lang={language_name}`
@@ -42,7 +42,7 @@ curl -X GET "http://localhost:8080/api/projects/findByLang?lang=java" -H "accept
 ```
 Or directly from your development tool; a test .http file can be found in `/src/main/resources/Manual REST Service Test.http`
 
-#####Response
+##### Response
 
 The response takes the form of a JSON array of ProjectInfo structures, which have the following schema
 ```
@@ -71,10 +71,10 @@ An example response would be
  ]
 ```
 
-######Errors
+###### Errors
 An invalid or missing `lang` parameter will return a 400 error.
 
-####To Dos
+#### To Dos
 There are a number of things that need to be done to improve this service implementation before it is ready for production usage, including but not limited to:
 * Support for customization via command line arguments e.g. port number
 * Potential implementation of caching to improve response time
