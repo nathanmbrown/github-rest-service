@@ -1,0 +1,71 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "The API for the Symantec Github REST Service Exercise",
+    "version" : "1.0.0",
+    "title" : "GitHub REST Service",
+    "contact" : {
+      "email" : "cv.nathanbrown@dfgh.net"
+    }
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/api",
+  "tags" : [ {
+    "name" : "projects",
+    "description" : "Access to GitHub Projects"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/projects/findByLang" : {
+      "get" : {
+        "tags" : [ "projects" ],
+        "summary" : "Finds GitHub projects by language",
+        "description" : "Language name must be the same as defined in GitHub e.g. rust, go, coffeescript etc",
+        "operationId" : "findProjectsByLanguage",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "lang",
+          "in" : "query",
+          "description" : "The language name to return projects for",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Project"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Invalid language value"
+          }
+        },
+        "x-accepts" : "application/json"
+      }
+    }
+  },
+  "definitions" : {
+    "Project" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        },
+        "owner" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
