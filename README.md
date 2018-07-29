@@ -1,7 +1,5 @@
 ## GitHub Projects REST Service
 
-###### Author : Nathan Brown
-
 ### Overview
 
 This REST service has been implemented using Vert.x. As a reactive event driven framework it is well suited to implementing such gateway API's, making it easy to write non-blocking service endpoints.
